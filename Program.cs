@@ -102,6 +102,7 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddTransient<IStockRepository, StockRepository>();
 builder.Services.AddTransient<ICommentRepository, CommentRepository>();
 builder.Services.AddTransient<ITokenService, TokenService>();
+builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
 /* AddSingleton */
 
 var app = builder.Build();

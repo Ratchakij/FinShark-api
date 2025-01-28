@@ -55,7 +55,7 @@ public class StockRepository : IStockRepository
 
     public async Task<Stock?> GetBySymbolAsync(string symbol)
     {
-        throw new NotImplementedException();
+        return await _context.Stocks.FirstOrDefaultAsync(s => s.Symbol == symbol);
     }
 
     public async Task<Stock> CreateAsync(Stock stockModel)

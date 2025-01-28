@@ -15,10 +15,10 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 
 # Topics
-ASP.NET Core Web API .NET 8 2024 - 25. Many-To-Many
+ASP.NET Core Web API .NET 8 2024 - 29. One-To-One
 
 # SQL Query
-1. INSERT Stocks
+## INSERT Stocks
 INSERT INTO Stocks (Symbol, CompanyName, Purchase, LastDiv, Industry, MarketCap)
 VALUES
 ('AAPL', 'Apple Inc.', 150.00, 0.88, 'Technology', 2500000000000),
@@ -32,7 +32,7 @@ VALUES
 ('JNJ', 'Johnson & Johnson', 170.00, 4.24, 'Healthcare', 450000000000),
 ('V', 'Visa Inc.', 250.00, 1.28, 'Financial Services', 500000000000);
 
-2. INSERT Comments
+## INSERT Comments
 INSERT INTO [finshark].[dbo].[Comments] ([Title], [Content], [CreatedOn], [StockId], [AppUserId])
 VALUES 
 ('Great Stock', 'This stock has shown consistent growth!', '2025-01-01 10:15:00', 1, 'user001'),
@@ -55,4 +55,11 @@ VALUES
 ('Market Leader', 'This is a safe and reliable stock.', '2025-01-09 10:00:00', 8, 'user018'),
 ('Growth Potential', 'The company is expanding into new markets.', '2025-01-09 12:15:00', 9, 'user019'),
 ('Negative Outlook', 'I expect the stock price to decline further.', '2025-01-10 11:40:00', 10, 'user020');
+
+## INSERT Portfolios
+INSERT INTO [finshark].[dbo].[Portfolios] ([AppUserId], [StockId])
+VALUES 
+('75fe8bb8-f03a-4194-9cec-a2e9a0310ee6', 1),
+('f729f601-f531-4a70-a5e4-3ee31e53ff29', 2),
+('fe351278-6534-4c72-b895-47ffe055670e', 3);
 
