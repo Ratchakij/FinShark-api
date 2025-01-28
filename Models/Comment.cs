@@ -16,5 +16,5 @@ public class Comment
     public int? StockId { get; set; }
     public Stock? Stock { get; set; } // Navigation Property (Lazy Loading จะใช้ได้หากกำหนด virtual)
     public string AppUserId { get; set; }
-    // public AppUser AppUser { get; set; }
+    public AppUser AppUser { get; set; }
 }
