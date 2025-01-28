@@ -97,13 +97,13 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-/* AddScoped */
-/* AddTransient */
+/* AddScoped | AddTransient | AddSingleton */
 builder.Services.AddTransient<IStockRepository, StockRepository>();
 builder.Services.AddTransient<ICommentRepository, CommentRepository>();
 builder.Services.AddTransient<ITokenService, TokenService>();
 builder.Services.AddTransient<IPortfolioRepository, PortfolioRepository>();
-/* AddSingleton */
+
+builder.Services.AddHttpClient<IFMPService, FMPService>();
 
 var app = builder.Build();
 
@@ -117,6 +117,13 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .AllowCredentials()
+    //.WithOrigins("https://localhost:44351))
+    .SetIsOriginAllowed(origin => true));
 
 /*
     var summaries = new[]
