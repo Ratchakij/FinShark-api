@@ -6,12 +6,16 @@ dotnet add package Microsoft.EntityFrameworkCore.Design
 dotnet add package Microsoft.EntityFrameworkCore.SqlServer
 dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson
 
+dotnet add package Microsoft.Extensions.Identity.Core
+dotnet add package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+dotnet add package Microsoft.AspNetCore.Authentication.JwtBearer
+
 # Create Migration and Upsate Database
 dotnet ef migrations add InitialCreate
 dotnet ef database update
 
 # Topics
-ASP.NET Core Web API .NET 8 2024 - 13. Comment GET + Include()
+ASP.NET Core Web API Identity JWT 2024 - 21. Install Identity
 
 # SQL Query
 1. INSERT Stocks
