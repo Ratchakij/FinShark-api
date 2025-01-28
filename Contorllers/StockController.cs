@@ -26,7 +26,7 @@ public class StockController : ControllerBase
     }
 
     [HttpGet]
-    // [Authorize]
+    [Authorize]
     public async Task<IActionResult> GetAll([FromQuery] QueryObject query)
     {
         if (!ModelState.IsValid) return BadRequest(ModelState);

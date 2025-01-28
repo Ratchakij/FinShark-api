@@ -15,7 +15,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 
 # Topics
-ASP.NET Core Web API Identity JWT 2024 - 21. Install Identity
+ASP.NET Core Web API .NET 8 2024 - 25. Many-To-Many
 
 # SQL Query
 1. INSERT Stocks

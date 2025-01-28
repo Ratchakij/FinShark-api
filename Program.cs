@@ -1,10 +1,12 @@
 using api.Data;
 using api.Models;
 using api.Repository;
+using api.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,35 @@ builder.Services.AddOpenApi(); // openapi/v1.json
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+/* Swagger Authorize */
+builder.Services.AddSwaggerGen(option =>
+{
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Finshark API", Version = "v1" });
+    option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        In = ParameterLocation.Header,
+        Description = "Please enter a valid token",
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        BearerFormat = "JWT",
+        Scheme = "Bearer"
+    });
+    option.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type=ReferenceType.SecurityScheme,
+                    Id="Bearer"
+                }
+            },
+            new string[]{}
+        }
+    });
+});
 
 /* NewtonsoftJson */
 builder.Services.AddControllers().AddNewtonsoftJson(options =>
@@ -70,6 +101,7 @@ builder.Services.AddAuthentication(options =>
 /* AddTransient */
 builder.Services.AddTransient<IStockRepository, StockRepository>();
 builder.Services.AddTransient<ICommentRepository, CommentRepository>();
+builder.Services.AddTransient<ITokenService, TokenService>();
 /* AddSingleton */
 
 var app = builder.Build();
